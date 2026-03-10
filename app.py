@@ -13,8 +13,6 @@ import mimetypes
 
 app = Flask(__name__)
 
-app = Flask(__name__)
-
 def is_text_file(filepath):
     """Attempt to guess if a file is a text/code file."""
     # Ignore obvious binaries based on extension
@@ -23,7 +21,13 @@ def is_text_file(filepath):
         # Some code files might not strictly drop into text/* by mimetypes but are code
         # Let's do a simple check on extension
         ext = os.path.splitext(filepath)[1].lower()
-        if ext not in ['.py', '.js', '.html', '.css', '.md', '.txt', '.csv', '.json', '.xml', '.yml', '.yaml', '.sh', '.bat', '.ps1', '.c', '.cpp', '.h', '.hpp', '.java', '.cs', '.php', '.go', '.rs', '.rb', '.ts', '.jsx', '.tsx', '.sql']:
+        allowed_extensions = {
+            '.py', '.js', '.html', '.css', '.md', '.txt', '.csv', '.json', '.xml', '.yml', '.yaml',
+            '.sh', '.bat', '.ps1', '.c', '.cpp', '.cxx', '.h', '.hpp', '.hxx', '.java', '.cs', '.php',
+            '.go', '.rs', '.rb', '.ts', '.jsx', '.tsx', '.sql', '.kt', '.swift', '.scala', '.m', '.r',
+            '.lua', '.pl', '.pm', '.dart', '.vue', '.svelte', '.toml', '.ini', '.cfg', '.conf', '.env'
+        }
+        if ext not in allowed_extensions:
             return False
     return True
 
