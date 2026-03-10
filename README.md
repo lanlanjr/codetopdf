@@ -73,7 +73,7 @@ If you prefer to run the application via Docker:
    ```
 2. Open a web browser and navigate to `http://localhost:5000`.
 
-*Note: The `docker-compose.yml` dynamically mounts your home directory symmetrically inside the container (read-only) using environment variables (`$USERPROFILE` for Windows, falling back to `$HOME` for macOS/Linux). This ensures that any absolute path pointing to files in your user directory (e.g., `/Users/username/...` or `C:\Users\username\...`) will work exactly the same way inside the Docker container.*
+*Note: The `docker-compose.yml` dynamically mounts your home directory to `/workspace` inside the container (read-only) using environment variables (`$USERPROFILE` for Windows, falling back to `$HOME` for macOS/Linux). Because Linux containers cannot use Windows drive letters (like `C:\`), you must provide paths relative to `/workspace` in the UI. For example, `C:\Users\username\Documents\code` becomes `/workspace/Documents/code`.*
 
 ## Usage
 1. Enter the absolute path of a local directory in the input field.
