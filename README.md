@@ -61,6 +61,8 @@ A local web application that allows you to scan a directory for code files, sele
    python app.py
    ```
 
+   *Note for Windows users:* If you encounter `OSError: cannot load library '...libgobject-2.0-0.dll'` when running the app natively, your system is missing WeasyPrint's required GTK3/Pango C-libraries, or they are conflicting with other software in your PATH (like Tesseract-OCR or GIMP). To run natively on Windows, you **must** install GTK3 via MSYS2 and ensure its `\mingw64\bin` folder is at the very top of your System PATH. **However, it is highly recommended that Windows users run this application via Docker to completely avoid these complex dependency issues.**
+
 3. Open a web browser and navigate to `http://127.0.0.1:5000`.
 
 ## Docker Deployment (Optional)
@@ -73,7 +75,7 @@ If you prefer to run the application via Docker:
    ```
 2. Open a web browser and navigate to `http://localhost:5000`.
 
-*Note: The `docker-compose.yml` dynamically mounts your home directory to `/workspace` inside the container (read-only) using environment variables (`$USERPROFILE` for Windows, falling back to `$HOME` for macOS/Linux). Because Linux containers cannot use Windows drive letters (like `C:\`), you must provide paths relative to `/workspace` in the UI. For example, `C:\Users\username\Documents\code` becomes `/workspace/Documents/code`.*
+*Note: The `docker-compose.yml` dynamically mounts your home directory to `/workspace` inside the container (read-only) using environment variables (`$USERPROFILE` for Windows, falling back to `$HOME` for macOS/Linux). Because Linux containers cannot use Windows drive letters (like `C:\`), you must provide paths relative to `/workspace` in the UI. For example, `C:\Users\username\Documents\code` becomes `/workspace/Documents/code` these also work for mac and linux.*
 
 ## Usage
 1. Enter the absolute path of a local directory in the input field.
