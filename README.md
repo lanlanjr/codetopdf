@@ -19,7 +19,7 @@ A local web application that allows you to scan a directory for code files, sele
 
 1. **Clone the repository (or navigate to the directory):**
    ```bash
-   cd code-to-pdf-app
+   cd codetopdf
    ```
 
 2. **Create and activate a virtual environment:**
