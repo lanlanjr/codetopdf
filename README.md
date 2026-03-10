@@ -24,13 +24,20 @@ A local web application that allows you to scan a directory for code files, sele
 
 2. **Create and activate a virtual environment:**
    ```bash
-   python3 -m venv venv
-   source venv/bin/activate  # Activate the virtual environment
+   python3 -m venv venv  # MacOS/Linux
+   # or
+   python -m venv venv  # Windows
+
+   source venv/bin/activate  # Activate the virtual environment for MacOS/Linux
+   # or
+   venv\Scripts\activate  # Activate the virtual environment for Windows
    ```
 
 3. **Install Python dependencies:**
    ```bash
-   pip install -r requirements.txt
+   pip3 install -r requirements.txt  # MacOS/Linux
+   # or
+   pip install -r requirements.txt  # Windows
    ```
 
 ## Running the Application
@@ -38,8 +45,16 @@ A local web application that allows you to scan a directory for code files, sele
 1. Ensure your virtual environment is activated.
 2. Run the Flask application:
    ```bash
-   python app.py
+   python3 app.py  # MacOS/Linux
+   # or
+   python app.py  # Windows
    ```
+   or
+
+   ```bash
+   flask run
+   ```
+
    *Note for macOS users:* If you installed Pango via Homebrew and encounter library loading errors like `Library not loaded`, you may need to export the library path before running the app:
    ```bash
    export DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH"
@@ -58,7 +73,7 @@ If you prefer to run the application via Docker:
    ```
 2. Open a web browser and navigate to `http://localhost:5000`.
 
-*Note: The `docker-compose.yml` uses the `$HOME` environment variable to mount your home directory symmetrically inside the container (read-only). This ensures that any absolute path pointing to files in your user directory (e.g., `/Users/username/..` on Mac or `C:\Users\username\..` on Windows) works exactly the same way inside the Docker container.*
+*Note: The `docker-compose.yml` dynamically mounts your home directory symmetrically inside the container (read-only) using environment variables (`$USERPROFILE` for Windows, falling back to `$HOME` for macOS/Linux). This ensures that any absolute path pointing to files in your user directory (e.g., `/Users/username/...` or `C:\Users\username\...`) will work exactly the same way inside the Docker container.*
 
 ## Usage
 1. Enter the absolute path of a local directory in the input field.
