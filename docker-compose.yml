@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      # Mount the user's home directory symmetrically so local paths match container paths
+      - ${HOME}:${HOME}:ro
+    environment:
+      - FLASK_ENV=production # Set to production for production, development for development
+      - FLASK_DEBUG=0 # Set to 1 for debugging
+    restart: unless-stopped

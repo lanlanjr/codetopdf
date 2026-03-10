@@ -1,0 +1,4 @@
+Flask==3.0.2
+WeasyPrint>=62.0
+Pygments==2.17.2
+Werkzeug==3.0.1
